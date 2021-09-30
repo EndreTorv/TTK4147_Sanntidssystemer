@@ -1,0 +1,32 @@
+TASK_B
+Q: Compare the worst-case response times, and explain why the distributions look different
+A: 	vDelay's worst case: 240 us, busyWait: 2100 us. busyWait does not open for rescheduling by itself during busy_waits 
+	which blocks other tasks. 
+	vDelay does and hence has a tenth of worst case scenario.
+
+TASK_C:
+Q: Ideally, task C should respond quite soon after 3ms has passed. Why doesn’t it?
+A: 	Task_C spends as much as 7 ms where all tasks uses vDelay and 10 ms with all using busy_wait.
+	Since all the tasks have the same priority, the scheduler starts rescheduling when busy_wait 
+	uses too much user-time automatically (around 1 ms ~= too much time?). 
+	This allows task A and B to get multiple turns while task C is busywaiting.
+Q: Why does changing to busy _wait_short() impact the C response time so severely, compared to A and B?	
+A:	Since the scheduler has to decide when something takes too much time
+	by itself, it might halt a busy_wait to run another busy_wait, which is quite slow.
+Q:Why would changing the priorities of the tasks not help us improve the responsiveness of the C
+	task? Hint: try it and see what happens
+A:	It did not help. High task_C priority makes task_A and B take atleast 3 ms to run. 
+	High prio on task A n B only allows C to run while A and B are vDelaying which is such a small window that it overflows.
+
+TASK_D:
+Q: Why does the way we keep the response pin low impact the response times?
+A:	The scheduler has to preemtively reschedule from busywaits which increases response time. vDelay which voluntarily lets up 
+	immediedtly for 1 ms is then faster.
+Q: Make all tasks call vTaskDelay(1) in the loop that reads the test pin, instead of busy waiting. 
+	What happened to the response times of each of the tasks? Why?
+A:	Task C ran much faster, but A and B suffered somewhat. Voluntarily yielding is faster than preemptive.
+
+TASK_E
+Q:Use priorities to make the response times for tasks A and B better.
+	What are the worst-case response times for A and B, and why?	
+A:	By lowering prio of C, A and B run much better too without having an impact on C.  
