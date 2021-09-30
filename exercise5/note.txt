@@ -1,0 +1,27 @@
+TASK B
+Q:  Compare the shape of the distributions: do any of the histograms have any
+    particular spikes, and why?
+A: Test A is more concentrated around 17.5 us. Test B has a
+    more distributed response. It has some extremely fast responses.
+    Can it be that the CPU is more "ready" when being assigned in-code?
+Q: Which one has the best worst-case response time, and why?
+A: Test A has best worst time. This is due to four cores
+  has more throughput than only 1. And other proccesses may extend execution.
+
+TASK D
+Q: What happens if the period is too short?
+A: There is no negative effect. Tried 100 us.
+
+Compare the four results: busy-polling the input vs periodic
+execution, both with and without disturbance:
+
+Q: Without the disturbance enabled - which one has the fastest response, and why?
+A:  Busy_polling was the fastest. It does not wait 1ms and then fire. Periodic can be as slow as 3 ms. (Does not seem correct, since its not a busywait)
+
+    I used the same waketime on all three. They should have had their own. This lead to it being as slow as 3 ms.
+
+Q: Which one is less impacted by the addition of the disturbance, and why?
+A: Periodic polling is the less impacted by disturbance. It does not clog the throuput with busy_polling I guess.
+Q: When the disturbance is enabled - do any of these have a predictable and consistent worst-case
+response time?
+A: When disturbance are enabled, periodic has a consistent worst case which are far better than busy_polling.
