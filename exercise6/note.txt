@@ -1,0 +1,9 @@
+TASK A
+Q: Compare results from last week. How does disturbance affect Xenomai tasks?
+A:	Xenomai isnt affected by the disturbance at all. This is due to the disturbance tasks being OS tasks, and 		Xenomai having priority over all OS tasks.
+
+TASK_B
+Q: Recall from last week - did any periodic pthread response thread have a predictable worst-case?
+A:	Yes. The worst case was around 3k us, but i recall it should have been 1k us due to an error.
+Q: With Xenomai tasks, has the worst-case come predictable?
+A:	It is a little better at 0.9k us. There are a very few cases at 1k us too.
