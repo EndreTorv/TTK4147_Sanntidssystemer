@@ -1,0 +1,22 @@
+TASK_A
+Q: What happens with the global and local variable and their incrementation?
+A: The local reaches 50m. The global is "supposed" to reach 100m, but only reaches around 50-90m. This means the incrementation of the global is disturbed due to it being a
+  shared resource which the threads are trying to access at the same time. Isnt incrementation a tre phase process? ; Read variable. Add 1 to the local read of the variable. Save the local incremented read to variable.
+
+TASK_B
+ Q: What was the problem?
+ A: There is a data race between the two threads.
+
+ TASK_C
+ Q: Does the program use more system time with semaphores? Why?
+ A: without: 4 ms. With: 329 ms. Yes it does. The threads are using alot of time waiting for each other :I
+
+ Q: How much user time?
+ A: Without: 208 ms. With: 2086 ms.
+
+ Q: Why is real time used lower than the sum of the other two?
+ A:  real: 2433 ms. User+sys = 2415. I might have a little larger program than usual in this lab since I just copy pasted exercise 5 and used that as a "base".
+
+task_d
+Q: See if u can spot le bug
+A: The singleton is not initalized correctly for the first 12 accesses. This is due to..
