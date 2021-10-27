@@ -65,10 +65,10 @@ void sync_work(void *input)
   
       unsigned long duration = 1000*1000*1000; // 1000 msecond timeout
 
-      rt_task_sleep((RTIME)duration);       
+      rt_task_sleep((RTIME)duration);        //busy wait
       rt_printf("Broadcasting/Unlocking semaphore..\n");
       rt_sem_broadcast(&sync_sem);
-      rt_task_sleep((RTIME)duration);       
+      rt_task_sleep((RTIME)duration);         //busy wait
       //int rt_sem_delete	(	RT_SEM * 	sem	)
       rt_printf("Deleting semaphore..\n");
       rt_sem_delete	(&sync_sem);

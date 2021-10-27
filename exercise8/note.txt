@@ -1,0 +1,15 @@
+TASK B
+
+Hva jeg tror:
+
+H: _|SS|SS|__|__|__|__|__|__|BB|BB|*_|
+M: _|SS|BB|BB|BB|BB|BB|*_|__|__|__|__|
+L: _|BB|__|__|__|__|__|BB|BB|__|__|*_|
+
+SS- sleep
+BB- busy
+* - task done. 
+Alle kjører på samme core. 
+
+TASK C
+

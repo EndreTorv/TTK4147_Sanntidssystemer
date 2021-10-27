@@ -75,6 +75,8 @@ int main(int argc, char *argv[]) {
 	rt_task_create(&B_task, "Task B", 0, 40, T_CPU(1));
 	
 
+
+
 	rt_task_start(&A_task, &busyWait, (void *)1);
 	rt_task_start(&B_task, &busyWait, (void *)2);
 	
